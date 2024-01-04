@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Asistencia a la Boda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #formulario {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="formulario">
+        <h2>Confirmación de Asistencia a la Boda</h2>
+        <form id="bodaForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apeliido" required>
+            <label for="mensaje">Mensaje Personalizado:</label>
+            <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+
+            <label for="asistencia">Asistencia:</label>
+            <select id="asistencia" name="asistencia" required>
+                <option value="Si">Si Obvio 😍</option>
+                <option value="No">No puedo asistir 😭</option>
+            </select>
+
+            <button type="button" onclick="enviarMensajeWhatsApp()">Confirmar Asistencia</button>
+        </form>
+    </div>
+
+    <script>
+        function enviarMensajeWhatsApp() {
+            var nombre = document.getElementById('nombre').value;
+            var apellido = document.getElementById('apellido').value;
+            var mensajePersonalizado = document.getElementById('mensaje').value;
+            var asistencia = document.getElementById('asistencia').value;
+
+            // Construir el mensaje de WhatsApp
+            var mensajeWhatsApp = "Hola, soy " + nombre + apellido + ". ";
+
+            if (mensajePersonalizado.trim() !== "") {
+                mensajeWhatsApp += mensajePersonalizado + ". ";
+            }
+
+            if (asistencia === "confirmado") {
+                mensajeWhatsApp += "Confirmaré mi asistencia a la boda. 🎉";
+            } else {
+                mensajeWhatsApp += "Lamentablemente, no podré asistir a la boda. 😢";
+            }
+
+            // Crear el enlace de WhatsApp con el mensaje predefinido
+            var linkWhatsApp = "https://wa.me/2267524245?text=" + encodeURIComponent(mensajeWhatsApp);
+
+            // Redirigir a WhatsApp
+            window.location.href = linkWhatsApp;
+        }
+    </script>
+
+</body>
+
+</html>
