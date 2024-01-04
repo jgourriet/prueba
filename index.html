@@ -55,15 +55,17 @@
         <form id="bodaForm">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
+
             <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apeliido" required>
+            <input type="text" id="apellido" name="apellido" required>
+
             <label for="mensaje">Mensaje Personalizado:</label>
             <textarea id="mensaje" name="mensaje" rows="4"></textarea>
 
             <label for="asistencia">Asistencia:</label>
             <select id="asistencia" name="asistencia" required>
-                <option value="Confirmación">Si Obvio 😍</option>
-                <option value="No">No puedo asistir 😭</option>
+                <option value="confirmado">Confirmado</option>
+                <option value="noconfirmado">No Confirmado</option>
             </select>
 
             <button type="button" onclick="enviarMensajeWhatsApp()">Confirmar Asistencia</button>
@@ -78,14 +80,14 @@
             var asistencia = document.getElementById('asistencia').value;
 
             // Construir el mensaje de WhatsApp
-            var mensajeWhatsApp = "Hola, soy " + nombre + apellido + ". ";
+            var mensajeWhatsApp = "Hola, soy " + nombre + " " + apellido + ". ";
 
             if (mensajePersonalizado.trim() !== "") {
                 mensajeWhatsApp += mensajePersonalizado + ". ";
             }
 
-            if (asistencia === "Confirmación") {
-                mensajeWhatsApp += "Confirmaro mi asistencia a la boda. 🎉";
+            if (asistencia === "confirmado") {
+                mensajeWhatsApp += "Confirmaré mi asistencia a la boda. 🎉";
             } else {
                 mensajeWhatsApp += "Lamentablemente, no podré asistir a la boda. 😢";
             }
